@@ -23,7 +23,7 @@ provider "aws" {
 
 # Source 수정 ( Update )
 module "stage_asg" {
-  source            = "../../../modules/aws-asg" # ( Update )
+  source            = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-alb?ref=v1.1.2" # ( Update )
   instance_type     = "t2.micro"
   desired_capacity  = "1"
   min_size          = "1"
