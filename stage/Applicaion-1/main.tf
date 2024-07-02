@@ -27,7 +27,7 @@ provider "aws" {
 ###############################################################
 
 module "stage_alb" {
-  source           = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-alb?ref=v1.0.0"
+  source           = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-alb?ref=v1.1.1"
   name             = "stage"
   vpc_id           = data.terraform_remote_state.vpc_remote_data.outputs.vpc_id
   public_subnets   = data.terraform_remote_state.vpc_remote_data.outputs.public_subnets
@@ -50,6 +50,6 @@ module "stage_asg" {
   private_subnets   = data.terraform_remote_state.vpc_remote_data.outputs.private_subnets
   SSH_SG_ID         = data.terraform_remote_state.vpc_remote_data.outputs.SSH_SG
   HTTP_HTTPS_SG_ID  = data.terraform_remote_state.vpc_remote_data.outputs.HTTP_HTTPS_SG
-  key_name          = "EC2-key" # 여기에 올바른 키 이름을 설정
   target_group_arns = [data.terraform_remote_state.app1_remote_data.outputs.ALB_TG]
 }
+
