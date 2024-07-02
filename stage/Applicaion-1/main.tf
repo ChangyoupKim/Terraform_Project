@@ -41,12 +41,15 @@ module "stage_alb" {
 ###############################################################
 
 module "stage_asg" {
-  source           = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-asg?ref=v1.0.0"
-  instance_type    = "t2.micro"
-  min_size         = "1"
-  max_size         = "1"
-  name             = "stage"
-  private_subnets  = data.terraform_remote_state.vpc_remote_data.outputs.private_subnets
-  SSH_SG_ID        = data.terraform_remote_state.vpc_remote_data.outputs.SSH_SG
-  HTTP_HTTPS_SG_ID = data.terraform_remote_state.vpc_remote_data.outputs.HTTP_HTTPS_SG
+  source            = "../../../modules/aws-asg"
+  instance_type     = "t2.micro"
+  min_size          = "2"
+  max_size          = "3"
+  desired_capacity  = 2
+  name              = "stage"
+  private_subnets   = data.terraform_remote_state.vpc_remote_data.outputs.private_subnets
+  SSH_SG_ID         = data.terraform_remote_state.vpc_remote_data.outputs.SSH_SG
+  HTTP_HTTPS_SG_ID  = data.terraform_remote_state.vpc_remote_data.outputs.HTTP_HTTPS_SG
+  key_name          = "EC2-key" # 여기에 올바른 키 이름을 설정
+  target_group_arns = [data.terraform_remote_state.app1_remote_data.outputs.ALB_TG]
 }
