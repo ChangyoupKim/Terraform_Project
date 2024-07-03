@@ -27,7 +27,7 @@ provider "aws" {
 #                          ASG 생성                           #
 ###############################################################
 module "stage_asg" {
-  source            = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-asg?ref=v1.1.0" # ( Update )
+  source            = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-asg?ref=v1.1.1" # ( Update )
   instance_type     = "t2.micro"
   desired_capacity  = "1"
   min_size          = "1"
