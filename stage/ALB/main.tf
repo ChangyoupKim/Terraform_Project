@@ -22,9 +22,13 @@ provider "aws" {
   profile = "terraform_user"
 }
 
-# Source 수정 ( Update )
+
+
+###############################################################
+#                          ALB 생성                           #
+###############################################################
 module "stage_alb" {
-  source           = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-alb?ref=v1.1.2" # ( Update )
+  source           = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-alb?ref=v1.1.0" # ( Update )
   name             = "stage"
   vpc_id           = data.terraform_remote_state.vpc_remote_data.outputs.vpc_id
   public_subnets   = data.terraform_remote_state.vpc_remote_data.outputs.public_subnets

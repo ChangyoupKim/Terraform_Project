@@ -27,7 +27,7 @@ provider "aws" {
 ###############################################################
 
 module "stage_alb" {
-  source           = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-alb?ref=v1.1.1"
+  source           = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-alb?ref=v1.1.0"
   name             = "stage"
   vpc_id           = data.terraform_remote_state.vpc_remote_data.outputs.vpc_id
   public_subnets   = data.terraform_remote_state.vpc_remote_data.outputs.public_subnets
@@ -41,7 +41,7 @@ module "stage_alb" {
 ###############################################################
 
 module "stage_asg" {
-  source            = "../../../modules/aws-asg"
+  source            = "github.com/ChangyoupKim/Terraform_Project_LocalModule//aws-asg?ref=v1.1.0"
   instance_type     = "t2.micro"
   min_size          = "2"
   max_size          = "3"
